@@ -53,56 +53,47 @@ class Mail_Address_MobileJpTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testIsMobileJp( ) {
-        $emails = array_merge($this->docomo, $this->ezweb, $this->softbank, $this->other);
-        foreach ( $emails as $email ) {
-            $this->assertTrue( $this->object->isMobileJp( $email ), $email );
-        }
-        foreach ( $this->notMobile as $email ) {
-            $this->assertFalse( $this->object->isMobileJp( $email ), $email );
-        }
+        $ok = array_merge($this->docomo, $this->ezweb, $this->softbank, $this->other);
+        $notOk = $this->notMobile;
+        $this->_assert('isMobileJp', $ok, $notOk);
     }
 
     public function testIsDocomo( ) {
-        foreach ( $this->docomo as $email ) {
-            $this->assertTrue( $this->object->isDocomo( $email ), $email );
-        }
-
-        $emails = array_merge($this->notMobile, $this->ezweb, $this->softbank, $this->other);
-        foreach ( $emails as $email ) {
-            $this->assertFalse( $this->object->isDocomo( $email ), $email );
-        }
+        $ok = $this->docomo;
+        $notOk = array_merge($this->notMobile, $this->ezweb, $this->softbank, $this->other);
+        $this->_assert('isDocomo', $ok, $notOk);
     }
 
     public function testIsImode( ) {
-        foreach ( $this->docomo as $email ) {
-            $this->assertTrue( $this->object->isImode( $email ), $email );
-        }
+        $ok = $this->docomo;
+        $notOk = array_merge($this->notMobile, $this->ezweb, $this->softbank, $this->other);
+        $this->_assert('isImode', $ok, $notOk);
+    }
 
-        $emails = array_merge($this->notMobile, $this->ezweb, $this->softbank, $this->other);
-        foreach ( $emails as $email ) {
-            $this->assertFalse( $this->object->isImode( $email ), $email );
-        }
+    public function testIsAu( ) {
+        $ok = $this->ezweb;
+        $notOk = array_merge($this->notMobile, $this->docomo, $this->softbank, $this->other);
+        $this->_assert('isAu', $ok, $notOk);
     }
 
     public function testIsEzweb( ) {
-        foreach ( $this->ezweb as $email ) {
-            $this->assertTrue( $this->object->isEzweb( $email ), $email );
-        }
-
-        $emails = array_merge($this->notMobile, $this->docomo, $this->softbank, $this->other);
-        foreach ( $emails as $email ) {
-            $this->assertFalse( $this->object->isEzweb( $email ), $email );
-        }
+        $ok = $this->ezweb;
+        $notOk = array_merge($this->notMobile, $this->docomo, $this->softbank, $this->other);
+        $this->_assert('isEzweb', $ok, $notOk);
     }
 
     public function testIsSoftbank( ) {
-        foreach ( $this->softbank as $email ) {
-            $this->assertTrue( $this->object->isSoftbank( $email ), $email );
-        }
+        $ok = $this->softbank;
+        $notOk = array_merge($this->notMobile, $this->docomo, $this->ezweb, $this->other);
+        $this->_assert('isSoftbank', $ok, $notOk);
+    }
 
-        $emails = array_merge($this->notMobile, $this->docomo, $this->ezweb, $this->other);
-        foreach ( $emails as $email ) {
-            $this->assertFalse( $this->object->isSoftbank( $email ), $email );
+    private function _assert($func, $ok, $notOk) {
+        foreach ( $ok as $email ) {
+            $this->assertTrue( $this->object->{$func}( $email ), $email );
+        }
+        foreach ( $notOk as $email ) {
+            $this->assertFalse( $this->object->{$func}( $email ), $email );
         }
     }
 }
