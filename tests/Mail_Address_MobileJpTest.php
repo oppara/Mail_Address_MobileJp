@@ -62,6 +62,17 @@ class Mail_Address_MobileJpTest extends PHPUnit_Framework_TestCase {
         }
     }
 
+    public function testIsDocomo( ) {
+        foreach ( $this->docomo as $email ) {
+            $this->assertTrue( $this->object->isDocomo( $email ), $email );
+        }
+
+        $emails = array_merge($this->notMobile, $this->ezweb, $this->softbank, $this->other);
+        foreach ( $emails as $email ) {
+            $this->assertFalse( $this->object->isDocomo( $email ), $email );
+        }
+    }
+
     public function testIsImode( ) {
         foreach ( $this->docomo as $email ) {
             $this->assertTrue( $this->object->isImode( $email ), $email );

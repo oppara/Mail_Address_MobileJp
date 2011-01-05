@@ -103,10 +103,14 @@ class Mail_Address_MobileJp
         return $domain && preg_match( "/$regex/x", $domain );
     }
 
-    public function isImode( $email ) {
+    public function isDocomo( $email ) {
         $domain = $this->_domain( $email );
         $regex = "(?:$this->regex_imode)";
         return $domain && preg_match( "/$regex/x", $domain );
+    }
+
+    public function isImode( $email ) {
+        return $this->isDocomo( $email );
     }
 
     public function isEzweb( $email ) {
