@@ -1,8 +1,7 @@
 <?php
 
-require_once '../src/Mail/Address/MobileJp.php';
+require_once dirname(dirname(__FILE__)) . '/Mail/Address/MobileJp.php';
 
-// phpunit Mail_Address_MobileJpTest Mail_Address_MobileJpTest.php 
 
 /**
  * Test class for Mail_Address_MobileJp.
@@ -97,4 +96,3 @@ class Mail_Address_MobileJpTest extends PHPUnit_Framework_TestCase {
         }
     }
 }
-?>
