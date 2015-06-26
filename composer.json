@@ -1,0 +1,30 @@
+{
+  "name": "oppara/Mail_Address_MobileJp",
+  "type": "library",
+  "description": "Port of Perl Module Mail::Address::MobileJp",
+  "keywords": ["email", "mobile", "e-mail address"],
+  "license": "MIT",
+  "homepage": "https://github.com/oppara/Mail_Address_MobileJp",
+  "authors": [
+    {
+      "name": "oppara",
+      "email": "oppara@oppara.tv"
+    }
+  ],
+  "require": {
+    "php": ">=5.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": ">=3.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Oppara\\Mail\\": "src/Mail"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Oppara\\Mail\\": "tests/Mail"
+    }
+  }
+}

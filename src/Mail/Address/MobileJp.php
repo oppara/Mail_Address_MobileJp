@@ -1,15 +1,15 @@
 <?php
+namespace Oppara\Mail\Address;
 
 /**
  * mobile email address in Japan
- * 
+ *
  * @see Mail::Address::MobileJp  http://search.cpan.org/~miyagawa/Mail-Address-MobileJp/
- * @package Mail/Address
- * @version 0.09
- * @author oppara <oppara _at_ oppara.tv> 
+ * @package Mail.Address
  */
-class Mail_Address_MobileJp
+class MobileJp
 {
+
     private $regex_imode = '^(?:docomo\.ne\.jp)$';
 
     private $regex_vodafone = '^(?:
@@ -74,17 +74,20 @@ class Mail_Address_MobileJp
 
     private static $instance = null;
 
-    final private function __construct() {}
+    final private function __construct()
+    {
+    }
 
     /**
      * getInstance
-     * 
+     *
      * @access public
      * @return Mail_Address_MobileJp
      */
-    final public static function getInstance() {
-        if ( self::$instance === null ) {
-            self::$instance = new Mail_Address_MobileJp();
+    final public static function getInstance()
+    {
+        if (self::$instance === null) {
+            self::$instance = new MobileJp();
         }
 
         return self::$instance;
@@ -92,51 +95,61 @@ class Mail_Address_MobileJp
 
     /**
      * whether $email is a mobile email address or not.
-     * 
+     *
      * @param string email string
-     * @return bool 
+     * @return bool
      * @access public
      */
-    public function isMobileJp( $email ) {
-        $domain = $this->_domain( $email );
+    public function isMobileJp($email)
+    {
+        $domain = $this->_domain($email);
         $regex = "(?:$this->regex_imode|$this->regex_vodafone|$this->regex_ezweb|$this->regex_mobile)";
-        return $domain && preg_match( "/$regex/x", $domain );
+        return $domain && preg_match("/$regex/x", $domain);
     }
 
-    public function isDocomo( $email ) {
-        $domain = $this->_domain( $email );
+    public function isDocomo($email)
+    {
+        $domain = $this->_domain($email);
         $regex = "(?:$this->regex_imode)";
-        return $domain && preg_match( "/$regex/x", $domain );
+        return $domain && preg_match("/$regex/x", $domain);
     }
 
-    public function isImode( $email ) {
-        return $this->isDocomo( $email );
+    public function isImode($email)
+    {
+        return $this->isDocomo($email);
     }
 
-    public function isEzweb( $email ) {
-        $domain = $this->_domain( $email );
+    public function isEzweb($email)
+    {
+        $domain = $this->_domain($email);
         $regex = "(?:$this->regex_ezweb)";
-        return $domain && preg_match( "/$regex/x", $domain );
+        return $domain && preg_match("/$regex/x", $domain);
     }
 
-    public function isAu( $email ) {
-        return $this->isEzweb( $email );
+    public function isAu($email)
+    {
+        return $this->isEzweb($email);
     }
 
-    public function isSoftbank( $email ) {
-        $domain = $this->_domain( $email );
+    public function isSoftbank($email)
+    {
+        $domain = $this->_domain($email);
         $regex = "(?:$this->regex_vodafone)";
-        return $domain && preg_match( "/$regex/x", $domain );
+        return $domain && preg_match("/$regex/x", $domain);
     }
 
-    public function isVodafone( $email ) {
-        return $this->isSoftbank( $email );
+    public function isVodafone($email)
+    {
+        return $this->isSoftbank($email);
     }
 
-    private function _domain( $email ) {
-        $pos = strstr( $email, '@' );
-        if ( $pos === false ) return '';
-        return substr( $pos, 1 );
+    private function _domain($email)
+    {
+        $pos = strstr($email, '@');
+        if ($pos === false) {
+            return '';
+        }
+        return substr($pos, 1);
     }
 }
 
