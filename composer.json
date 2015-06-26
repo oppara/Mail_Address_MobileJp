@@ -1,10 +1,10 @@
 {
-  "name": "oppara/Mail_Address_MobileJp",
+  "name": "oppara/mail_address_mobile-jp",
   "type": "library",
   "description": "Port of Perl Module Mail::Address::MobileJp",
   "keywords": ["email", "mobile", "e-mail address"],
   "license": "MIT",
-  "homepage": "https://github.com/oppara/Mail_Address_MobileJp",
+  "homepage": "https://github.com/mail_address_mobile-jp",
   "authors": [
     {
       "name": "oppara",
